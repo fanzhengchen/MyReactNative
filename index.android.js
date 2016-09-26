@@ -43,7 +43,7 @@ class rn extends Component {
         return (
             <DrawerLayoutAndroid
                 drawerWidth={300}
-                drawerPosition={DrawerLayoutAndroid.positions.Left}
+                drawerPosition={DrawerLayoutAndroid.positions.Right}
                 renderNavigationView={() => navigationView}>
                 <App/>
             </DrawerLayoutAndroid>

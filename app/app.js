@@ -22,8 +22,11 @@ export default class App extends React.Component {
         });
 
         var array = [];
+        var flag = false;
         for (var i = 0; i < 50; ++i) {
-            array.push("row " + i);
+            var temp = flag;
+            array.push({"row": i, "desc": "i descr", "value": temp});
+            flag ^= true;
         }
         this.state = {
             dataSource: ds.cloneWithRows(array)
@@ -32,9 +35,19 @@ export default class App extends React.Component {
     render() {
         return (<ListView
             dataSource={this.state.dataSource}
-            renderRow={(rowData) => <View>
+            renderRow={(rowData) => <View
+            style={{
+            flexDirection: 'row',
+            flex: 1,
+            backgroundColor: rowData.value
+                ? "#ff0000"
+                : "#00ff00"
+        }}>
+            <Text style={{}}>
+                {rowData.row}
+            </Text>
             <Text>
-                {rowData}
+                {rowData.desc}
             </Text>
         </View>}/>);
     }
