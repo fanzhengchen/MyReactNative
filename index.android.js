@@ -16,7 +16,7 @@ import {
     ToastAndroid,
     TouchableHighlight,
     TouchableOpacity,
-    DrawerLayoutAndroid,
+    DrawerLayoutAndroid
 } from 'react-native';
 
 import FirstPageComponent from './views/FirstPageComponent';
@@ -26,7 +26,43 @@ class rn extends Component {
 
     render() {
 
-        var navigationView = (
+
+        // return (<Navigator
+        //     initialRoute={{
+        //     id: "App",
+        //     name: 'Index'
+        // }}
+        //     renderScene={this
+        //     .renderView
+        //     .bind(this)}
+        //     configureScene={(route) => {
+        //     return Navigator.SceneConfigs.FloatFromRight;
+        // }}/>);
+        var navigationView = <View/>
+        return(
+             <DrawerLayoutAndroid
+                drawerWidth={300}
+                drawerPosition={DrawerLayoutAndroid.positions.Left}
+                renderNavigationView={() => navigationView}>
+                <App/>
+            </DrawerLayoutAndroid>
+        );
+    }
+
+    renderView(route, navigator) {
+        var navigationView = getNavigationView();
+        return (
+            <DrawerLayoutAndroid
+                drawerWidth={300}
+                drawerPosition={DrawerLayoutAndroid.positions.Right}
+                renderNavigationView={() => navigationView}>
+                <App/>
+            </DrawerLayoutAndroid>
+        );
+    }
+
+    getNavigationView() {
+        return (
             <View
                 style={{
                 flex: 1,
@@ -40,14 +76,6 @@ class rn extends Component {
                 }}>I'm in the Drawer!</Text>
             </View>
         );
-        return (
-            <DrawerLayoutAndroid
-                drawerWidth={300}
-                drawerPosition={DrawerLayoutAndroid.positions.Right}
-                renderNavigationView={() => navigationView}>
-                <App/>
-            </DrawerLayoutAndroid>
-        )
     }
 }
 
