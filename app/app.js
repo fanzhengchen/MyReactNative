@@ -13,6 +13,20 @@ import {
     ListView
 } from 'react-native';
 
+import Cell from './cell'
+
+const styles = StyleSheet.create({
+    separator: {
+        flex: 1,
+        backgroundColor: '#ededed'
+    },
+
+    row:{
+        flex: 100,
+        backgroundColor: '#FFFFFF',
+    },
+});
+
 export default class App extends React.Component {
     constructor(props) {
         super(props);
@@ -33,23 +47,15 @@ export default class App extends React.Component {
         };
     }
     render() {
-        return (<ListView
-            dataSource={this.state.dataSource}
-            renderRow={(rowData) => <View
-            style={{
-            flexDirection: 'row',
-            flex: 1,
-            backgroundColor: rowData.value
-                ? "#ff0000"
-                : "#00ff00"
-        }}>
-            <Text style={{}}>
-                {rowData.row}
-            </Text>
-            <Text>
-                {rowData.desc}
-            </Text>
-        </View>}/>);
+        return (
+            <ListView
+                dataSource={this.state.dataSource}
+                renderSeparator={(sectionID, rowID) => <View key={rowID} style={styles.separator}/>}
+                renderRow={(rowData) => <View
+                style={styles.row}>
+                <Cell/>
+            </View>}/>
+        );
     }
 
 }
