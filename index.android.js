@@ -22,6 +22,7 @@ import {
 import FirstPageComponent from './views/FirstPageComponent';
 import App from './app/app';
 import NavigationView from './app/navigationview';
+import Product from './app/product';
 
 class rn extends Component {
 
@@ -34,24 +35,28 @@ class rn extends Component {
             renderScene={this
             .renderView
             .bind(this)}
-            configureScene={(route) => {
-            return Navigator.SceneConfigs.FloatFromRight;
-        }}/>);
+            configureScene={this.configureScene.bind(this)}/>);
     }
 
     renderView(route, navigator) {
-        if (route.name == 'Index') { 
+        if (route.id == 'App') { 
             return (
                 <DrawerLayoutAndroid
                     drawerWidth={300}
                     drawerPosition={DrawerLayoutAndroid.positions.Right}
-                    renderNavigationView={() => <NavigationView/>}>
-                    <App/>
+                    renderNavigationView={() => <NavigationView navigator={navigator}/>}>
+                    <App navigator={navigator}/>
                 </DrawerLayoutAndroid>
             );
-        }else if(route.name == ''){
-
+        }else if(route.id == 'Product'){
+            return (
+                <Product navigator={navigator} {...route.passProps}/>
+            );
         }
+    }
+
+    configureScene(route){
+        return Navigator.SceneConfigs.FloatFromRight;
     }
 }
 

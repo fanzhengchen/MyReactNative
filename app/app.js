@@ -37,7 +37,7 @@ export default class App extends React.Component {
 
         var array = [];
         var flag = false;
-        for (var i = 0; i < 100; ++i) {
+        for (var i = 0; i < 10; ++i) {
             var temp = flag;
             array.push({"row": i, "desc": "i descr", "value": temp});
             flag ^= true;
@@ -53,9 +53,9 @@ export default class App extends React.Component {
                 renderSeparator={(sectionID, rowID) => <View key={rowID} style={styles.separator}/>}
                 renderRow={(rowData) => <View
                 style={styles.row}>
-                <Cell/>
+                <Cell navigator={this.props.navigator}/>
             </View>}/>
         );
     }
 
-}
+};

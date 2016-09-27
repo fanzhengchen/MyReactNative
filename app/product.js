@@ -5,16 +5,39 @@ import {
     Text,
     View,
     Image,
-    Navigator
+    Navigator,
+    TouchableHighlight
 } from 'react-native';
+import Pager from './pager';
 
-export default class ProductDetail extends Component {
+export default class Product extends Component {
     render() {
         return (
-            <View>
+            <View style={{
+                flexDirection: 'column'
+            }}>
                 <Text>Product</Text>
+
+                <TouchableHighlight
+                    onPress={this
+                    ._onBack
+                    .bind(this)}
+                    underlayColor='#999999'>
+                    <Text>Back</Text>
+                </TouchableHighlight>
+
+                <Text>{this.props.data}</Text>
+
+
             </View>
         );
     }
 
-}
+    _onBack() {
+        this
+            .props
+            .navigator
+            .pop();
+    }
+
+};
