@@ -37,7 +37,7 @@ export default class App extends React.Component {
 
         var array = [];
         var flag = false;
-        for (var i = 0; i < 50; ++i) {
+        for (var i = 0; i < 100; ++i) {
             var temp = flag;
             array.push({"row": i, "desc": "i descr", "value": temp});
             flag ^= true;

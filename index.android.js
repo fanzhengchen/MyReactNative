@@ -21,61 +21,37 @@ import {
 
 import FirstPageComponent from './views/FirstPageComponent';
 import App from './app/app';
+import NavigationView from './app/navigationview';
 
 class rn extends Component {
 
     render() {
-
-
-        // return (<Navigator
-        //     initialRoute={{
-        //     id: "App",
-        //     name: 'Index'
-        // }}
-        //     renderScene={this
-        //     .renderView
-        //     .bind(this)}
-        //     configureScene={(route) => {
-        //     return Navigator.SceneConfigs.FloatFromRight;
-        // }}/>);
-        var navigationView = <View/>
-        return(
-             <DrawerLayoutAndroid
-                drawerWidth={300}
-                drawerPosition={DrawerLayoutAndroid.positions.Left}
-                renderNavigationView={() => navigationView}>
-                <App/>
-            </DrawerLayoutAndroid>
-        );
+        return (<Navigator
+            initialRoute={{
+            id: "App",
+            name: 'Index'
+        }}
+            renderScene={this
+            .renderView
+            .bind(this)}
+            configureScene={(route) => {
+            return Navigator.SceneConfigs.FloatFromRight;
+        }}/>);
     }
 
     renderView(route, navigator) {
-        var navigationView = getNavigationView();
-        return (
-            <DrawerLayoutAndroid
-                drawerWidth={300}
-                drawerPosition={DrawerLayoutAndroid.positions.Right}
-                renderNavigationView={() => navigationView}>
-                <App/>
-            </DrawerLayoutAndroid>
-        );
-    }
+        if (route.name == 'Index') { 
+            return (
+                <DrawerLayoutAndroid
+                    drawerWidth={300}
+                    drawerPosition={DrawerLayoutAndroid.positions.Right}
+                    renderNavigationView={() => <NavigationView/>}>
+                    <App/>
+                </DrawerLayoutAndroid>
+            );
+        }else if(route.name == ''){
 
-    getNavigationView() {
-        return (
-            <View
-                style={{
-                flex: 1,
-                backgroundColor: '#fff'
-            }}>
-                <Text
-                    style={{
-                    margin: 10,
-                    fontSize: 15,
-                    textAlign: 'left'
-                }}>I'm in the Drawer!</Text>
-            </View>
-        );
+        }
     }
 }
 
