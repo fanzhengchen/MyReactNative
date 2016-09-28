@@ -1,14 +1,21 @@
 import React, {Component} from 'react';
-import {
+var ReactNative = require('react-native');
+var {
     AppRegistry,
     StyleSheet,
     Text,
     View,
     Image,
     Navigator,
-    TouchableHighlight
-} from 'react-native';
-import Pager from './pager';
+    TouchableHighlight,
+    ViewPagerAndroid,
+} = ReactNative;
+import ViewPagerC from './pager';
+
+const Images = [
+    'http://www.freedigitalphotos.net/images/img/homepage/87357.jpg',
+    'http://assets.barcroftmedia.com.s3-website-eu-west-1.amazonaws.com/assets/images/recent-images-11.jpg',
+];
 
 export default class Product extends Component {
     render() {
@@ -20,14 +27,16 @@ export default class Product extends Component {
 
                 <TouchableHighlight
                     onPress={this
-                    ._onBack
-                    .bind(this)}
+                        ._onBack
+                        .bind(this) }
                     underlayColor='#999999'>
                     <Text>Back</Text>
                 </TouchableHighlight>
 
                 <Text>{this.props.data}</Text>
 
+                <ViewPagerC/>
+               
 
             </View>
         );
@@ -41,3 +50,10 @@ export default class Product extends Component {
     }
 
 };
+
+const styles = StyleSheet.create({
+    image:{
+        width: 200,
+        height: 200
+    }
+})

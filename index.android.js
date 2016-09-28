@@ -23,6 +23,7 @@ import FirstPageComponent from './views/FirstPageComponent';
 import App from './app/app';
 import NavigationView from './app/navigationview';
 import Product from './app/product';
+import Toolbar from './app/toolbar';
 
 class rn extends Component {
 
@@ -35,7 +36,13 @@ class rn extends Component {
             renderScene={this
             .renderView
             .bind(this)}
-            configureScene={this.configureScene.bind(this)}/>);
+            configureScene={this.configureScene.bind(this)}
+             navigationBar={
+     <Navigator.NavigationBar
+       style={{backgroundColor: 'gray'}}
+     />
+  }
+            />);
     }
 
     renderView(route, navigator) {
