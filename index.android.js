@@ -24,6 +24,7 @@ import App from './app/app';
 import NavigationView from './app/navigationview';
 import Product from './app/product';
 import Toolbar from './app/toolbar';
+import WebContainer from './app/webview';
 
 class rn extends Component {
 
@@ -36,17 +37,13 @@ class rn extends Component {
             renderScene={this
             .renderView
             .bind(this)}
-            configureScene={this.configureScene.bind(this)}
-             navigationBar={
-     <Navigator.NavigationBar
-       style={{backgroundColor: 'gray'}}
-     />
-  }
-            />);
+            configureScene={this
+            .configureScene
+            .bind(this)}/>);
     }
 
     renderView(route, navigator) {
-        if (route.id == 'App') { 
+        if (route.id == 'App') {
             return (
                 <DrawerLayoutAndroid
                     drawerWidth={300}
@@ -55,14 +52,14 @@ class rn extends Component {
                     <App navigator={navigator}/>
                 </DrawerLayoutAndroid>
             );
-        }else if(route.id == 'Product'){
-            return (
-                <Product navigator={navigator} {...route.passProps}/>
-            );
+        } else if (route.id == 'Product') {
+            return (<Product navigator={navigator} {...route.passProps}/>);
+        } else if (route.id == 'webview') {
+            return (<WebContainer navigator={navigator} {...route.passProps}/>);
         }
     }
 
-    configureScene(route){
+    configureScene(route) {
         return Navigator.SceneConfigs.FloatFromRight;
     }
 }

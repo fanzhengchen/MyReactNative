@@ -10,7 +10,8 @@ import {
     ToastAndroid,
     TouchableHighlight,
     TouchableOpacity,
-    ListView
+    ListView,
+    Alert
 } from 'react-native';
 
 import Cell from './cell'
@@ -21,10 +22,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#ededed'
     },
 
-    row:{
+    row: {
         flex: 100,
-        backgroundColor: '#FFFFFF',
-    },
+        backgroundColor: '#FFFFFF'
+    }
 });
 
 export default class App extends React.Component {
@@ -51,11 +52,11 @@ export default class App extends React.Component {
             <ListView
                 dataSource={this.state.dataSource}
                 renderSeparator={(sectionID, rowID) => <View key={rowID} style={styles.separator}/>}
-                renderRow={(rowData) => <View
-                style={styles.row}>
+                renderRow={(rowData) => <View style={styles.row}>
                 <Cell navigator={this.props.navigator}/>
             </View>}/>
         );
     }
+
 
 };
